@@ -1,0 +1,10 @@
+<h1>Welcome to Restaurants MVP 👩🏻‍🍳</h1>
+<ul>
+  <% @restaurants.each do |restaurant| %>
+    <li class="list-unstyled"> <%= link_to "#{restaurant.name}", restaurant_path(restaurant) %> </li>
+  <% end %>
+</ul>
+
+<div class="p-4">
+  <p> <%= link_to 'List new restaurant', new_restaurant_path %></p>
+</div>
