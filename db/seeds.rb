@@ -10,7 +10,7 @@
 
 restaurant_category = ["chinese", "italian", "japanese", "french", "belgian"]
 
-review_rating = [(0..5)].sample
+review_rating = (0..5).to_a
 
 10.times do
   restaurant = Restaurant.new(
@@ -19,10 +19,14 @@ review_rating = [(0..5)].sample
     phone_number: Faker::PhoneNumber.phone_number,
     category: restaurant_category.sample
   )
-  review = Review.new(
-    content: Faker::Restaurant.review,
-    rating: review_rating
-  )
   restaurant.save!
-  review.save!
+
+  2.times do
+    review = Review.new(
+      content: Faker::Restaurant.review,
+      rating: review_rating.sample,
+      restaurant: restaurant
+    )
+    review.save!
+  end
 end
